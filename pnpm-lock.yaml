@@ -5,9 +5,15 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
+  '@inlang/sdk-js':
+    specifier: ^0.7.1
+    version: 0.7.1(@sveltejs/kit@1.22.1)(esbuild@0.18.11)(svelte@4.0.5)
   '@sveltejs/adapter-auto':
     specifier: ^2.0.0
     version: 2.1.0(@sveltejs/kit@1.22.1)
+  '@sveltejs/adapter-cloudflare':
+    specifier: ^2.3.1
+    version: 2.3.1(@sveltejs/kit@1.22.1)
   '@sveltejs/kit':
     specifier: ^1.20.4
     version: 1.22.1(svelte@4.0.5)(vite@4.4.2)
@@ -61,6 +67,20 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
+    dev: true
+
+  /@cloudflare/workers-types@4.20230710.1:
+    resolution: {integrity: sha512-VqEY/ZqyHKBn6ivdePSWebpqojwbCXVEuwLkMYHs0UoOAqcGylkVcabdZYdQJKeNxXcOUZ9UBId/x9UsPUm2XQ==}
+    dev: true
+
+  /@esbuild-plugins/node-modules-polyfill@0.2.2(esbuild@0.18.11):
+    resolution: {integrity: sha512-LXV7QsWJxRuMYvKbiznh+U1ilIop3g2TeKRzUxOG5X3YITc8JyyTa90BmLwqqv0YnX4v32CSlG+vsziZp9dMvA==}
+    peerDependencies:
+      esbuild: '*'
+    dependencies:
+      esbuild: 0.18.11
+      escape-string-regexp: 4.0.0
+      rollup-plugin-node-polyfills: 0.2.1
     dev: true
 
   /@esbuild/android-arm64@0.18.11:
@@ -318,6 +338,40 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@inlang-git/fs@0.0.4:
+    resolution: {integrity: sha512-VGBV8N6wJpb1xHA9dR5qETxaAeDENhN9+KIicNFSazk3OUNjrn/L237+FEXuQyfzwkIsC4T0Mx+qbc0w1/4pqQ==}
+    dependencies:
+      js-base64: 3.7.5
+      outmatch: 0.7.0
+    dev: true
+
+  /@inlang/core@0.9.2(esbuild@0.18.11):
+    resolution: {integrity: sha512-NF6jeEMO3HHhkOVCDM0AvWWF36KXXPUm5C4H0IamLQl05dzo0vdk6x8P3eTX4wopEHc0slgE0+I2myvuZQE6dg==}
+    engines: {node: '>=16.15.0'}
+    dependencies:
+      '@esbuild-plugins/node-modules-polyfill': 0.2.2(esbuild@0.18.11)
+      '@inlang-git/fs': 0.0.4
+      deepmerge-ts: 5.1.0
+      ts-dedent: 2.2.0
+      zod: 3.21.4
+    transitivePeerDependencies:
+      - esbuild
+    dev: true
+
+  /@inlang/sdk-js@0.7.1(@sveltejs/kit@1.22.1)(esbuild@0.18.11)(svelte@4.0.5):
+    resolution: {integrity: sha512-PfcyuAd3DsdwtEGDSR5iwrGWIn1ulanJ7HcVhB4rFLvYJhgm8AelxHMJOnF72skM8yEI3gkWUaLGdfLf9s5Nwg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@sveltejs/kit': ^1.0.0
+      svelte: ^3.0.0 || ^4.0.0
+    dependencies:
+      '@inlang/core': 0.9.2(esbuild@0.18.11)
+      '@sveltejs/kit': 1.22.1(svelte@4.0.5)(vite@4.4.2)
+      svelte: 4.0.5
+    transitivePeerDependencies:
+      - esbuild
+    dev: true
+
   /@jridgewell/gen-mapping@0.3.3:
     resolution: {integrity: sha512-HLhSWOLRi875zjjMG/r+Nv0oCW8umGb0BgEhyX3dDX3egwZtB8PqLnjz3yedt8R5StBrzcg4aBpnh8UA9D1BoQ==}
     engines: {node: '>=6.0.0'}
@@ -384,6 +438,17 @@ packages:
     dependencies:
       '@sveltejs/kit': 1.22.1(svelte@4.0.5)(vite@4.4.2)
       import-meta-resolve: 3.0.0
+    dev: true
+
+  /@sveltejs/adapter-cloudflare@2.3.1(@sveltejs/kit@1.22.1):
+    resolution: {integrity: sha512-T+A8LZf70T6hqXj+amN+2mkaZrVDhrr2mzqFUlw2H8M5ClTkBVc8F0EEDQUaRlSQ+RBIFXIltPWUjfSNfb5uPw==}
+    peerDependencies:
+      '@sveltejs/kit': ^1.0.0
+    dependencies:
+      '@cloudflare/workers-types': 4.20230710.1
+      '@sveltejs/kit': 1.22.1(svelte@4.0.5)(vite@4.4.2)
+      esbuild: 0.18.11
+      worktop: 0.8.0-next.15
     dev: true
 
   /@sveltejs/kit@1.22.1(svelte@4.0.5)(vite@4.4.2):
@@ -794,6 +859,11 @@ packages:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
     dev: true
 
+  /deepmerge-ts@5.1.0:
+    resolution: {integrity: sha512-eS8dRJOckyo9maw9Tu5O5RUi/4inFLrnoLkBe3cPfDMx3WZioXtmOew4TXQaxq7Rhl4xjDtR7c6x8nNTxOvbFw==}
+    engines: {node: '>=16.0.0'}
+    dev: true
+
   /deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
@@ -1007,6 +1077,10 @@ packages:
   /estraverse@5.3.0:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
     engines: {node: '>=4.0'}
+    dev: true
+
+  /estree-walker@0.6.1:
+    resolution: {integrity: sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==}
     dev: true
 
   /estree-walker@3.0.3:
@@ -1224,6 +1298,10 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
+  /js-base64@3.7.5:
+    resolution: {integrity: sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA==}
+    dev: true
+
   /js-yaml@4.1.0:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
@@ -1281,6 +1359,12 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+    dev: true
+
+  /magic-string@0.25.9:
+    resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
+    dependencies:
+      sourcemap-codec: 1.4.8
     dev: true
 
   /magic-string@0.27.0:
@@ -1391,6 +1475,10 @@ packages:
       levn: 0.4.1
       prelude-ls: 1.2.1
       type-check: 0.4.0
+    dev: true
+
+  /outmatch@0.7.0:
+    resolution: {integrity: sha512-w1ybiTBffGiwxOO7JJBVVOsIiWwzcfSl/D80amWAU2UDe1o9/SySOUzAwDuN3+jGKQRs0UCDTS8rndFiroJgVQ==}
     dev: true
 
   /p-limit@3.1.0:
@@ -1540,6 +1628,11 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /regexparam@2.0.1:
+    resolution: {integrity: sha512-zRgSaYemnNYxUv+/5SeoHI0eJIgTL/A2pUtXUPLHQxUldagouJ9p+K6IbIZ/JiQuCEv2E2B1O11SjVQy3aMCkw==}
+    engines: {node: '>=8'}
+    dev: true
+
   /resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
@@ -1562,6 +1655,27 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rollup-plugin-inject@3.0.2:
+    resolution: {integrity: sha512-ptg9PQwzs3orn4jkgXJ74bfs5vYz1NCZlSQMBUA0wKcGp5i5pA1AO3fOUEte8enhGUC+iapTCzEWw2jEFFUO/w==}
+    deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-inject.
+    dependencies:
+      estree-walker: 0.6.1
+      magic-string: 0.25.9
+      rollup-pluginutils: 2.8.2
+    dev: true
+
+  /rollup-plugin-node-polyfills@0.2.1:
+    resolution: {integrity: sha512-4kCrKPTJ6sK4/gLL/U5QzVT8cxJcofO0OU74tnB19F40cmuAKSzH5/siithxlofFEjwvw1YAhPmbvGNA6jEroA==}
+    dependencies:
+      rollup-plugin-inject: 3.0.2
+    dev: true
+
+  /rollup-pluginutils@2.8.2:
+    resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
+    dependencies:
+      estree-walker: 0.6.1
     dev: true
 
   /rollup@3.26.2:
@@ -1645,6 +1759,11 @@ packages:
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /sourcemap-codec@1.4.8:
+    resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+    deprecated: Please use @jridgewell/sourcemap-codec instead
     dev: true
 
   /streamsearch@1.1.0:
@@ -1814,6 +1933,11 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /ts-dedent@2.2.0:
+    resolution: {integrity: sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==}
+    engines: {node: '>=6.10'}
+    dev: true
+
   /tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
@@ -1921,6 +2045,14 @@ packages:
       isexe: 2.0.0
     dev: true
 
+  /worktop@0.8.0-next.15:
+    resolution: {integrity: sha512-0ycNO52P6nVwsjr1y20zuf0nqJatAb8L7MODBfQIxbxndHV5O4s50oZZMHWhJG1RLpHwbK0Epq8aaQK4E2GlgQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      mrmime: 1.0.1
+      regexparam: 2.0.1
+    dev: true
+
   /wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: true
@@ -1937,4 +2069,8 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  /zod@3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: true
